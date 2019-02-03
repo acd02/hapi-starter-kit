@@ -1,0 +1,12 @@
+<p>hello there</p>
+<ul>
+  {{#hMap items }}
+    {{ label }}
+  {{/hMap}}
+</ul>
+{{#if queryStringValue}}
+<p>query string: {{ queryStringValue }}</p>
+{{/if}}
+{{#if paramValue}}
+<p>id param: {{ paramValue }}</p>
+{{/if}}
