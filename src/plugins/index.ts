@@ -2,7 +2,7 @@ import { Server } from 'hapi'
 import * as path from 'path'
 
 const devErrors = require('hapi-dev-errors')
-const Handlebars = require('handlebars')
+const HapiReactViews = require('hapi-react-views')
 const Vision = require('vision')
 const Good = require('good')
 
@@ -17,12 +17,13 @@ export async function registerViewEngine(server: Server) {
   const viewPath = path.resolve(__dirname, '../', 'views')
 
   server.views({
-    engines: { hbs: Handlebars },
+    engines: { tsx: HapiReactViews },
     relativeTo: __dirname,
     path: viewPath,
-    layoutPath: path.resolve(viewPath, 'layouts'),
-    layout: 'index',
-    helpersPath: path.resolve(__dirname, '../', 'helpers'),
+    compileOptions: {
+      layoutPath: path.resolve(viewPath, 'layouts'),
+      layout: 'index'
+    },
     context: {
       title: 'Document'
     },
