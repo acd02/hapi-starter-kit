@@ -1,11 +1,10 @@
 import { Lifecycle } from 'hapi'
 
 import { getQueryString, getUrlParam } from '../utils'
-import { QueryStrings, Params } from '../routes'
 
 export const rootHandler: Lifecycle.Method = (request, reply) => {
-  const maybeQueryString = getQueryString(request.query[QueryStrings.name])
-  const maybeIdParam = getUrlParam(request.params[Params.id])
+  const maybeQueryString = getQueryString(request, 'name')
+  const maybeIdParam = getUrlParam(request, 'id')
 
   return reply.view('index', {
     title: 'Index',

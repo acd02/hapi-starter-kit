@@ -1,9 +1,20 @@
+import { Request } from 'hapi'
 import { Option, fromNullable } from 'fp-ts/lib/Option'
 
-export function getQueryString(query?: string | string[]): Option<string> {
-  return fromNullable(Array.isArray(query) ? query[0]: query)
+import { QueryStrings, Params } from '../routes'
+
+export function getQueryString(
+  request: Request,
+  query: keyof typeof QueryStrings
+): Option<string> {
+  const queryValue = request.query[query]
+
+  return fromNullable(Array.isArray(queryValue) ? queryValue[0] : queryValue)
 }
 
-export function getUrlParam(param?: string): Option<string> {
-  return fromNullable(param)
+export function getUrlParam(
+  request: Request,
+  param: keyof typeof Params
+): Option<string> {
+  return fromNullable(request.params[param])
 }
