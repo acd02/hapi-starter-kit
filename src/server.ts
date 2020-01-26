@@ -1,9 +1,6 @@
 import * as Hapi from 'hapi'
-import to from 'await-to-js'
-import { fromNullable } from 'fp-ts/lib/Option'
-import { catOptions, isEmpty } from 'fp-ts/lib/Array'
 
-import { registerLogging, registerViewEngine, registerDevErrors } from './plugins'
+import { registerDevErrors, registerLogging, registerViewEngine } from './plugins'
 import { routes } from './routes'
 
 const server = new Hapi.Server({
@@ -14,22 +11,12 @@ const server = new Hapi.Server({
 server.route(routes)
 
 async function start() {
-  const [registerLoggingErr] = await to(registerLogging(server))
-  const [registerDevErrorsErr] = await to(registerDevErrors(server))
-  const [registerViewEngineErr] = await to(registerViewEngine(server))
-  const [serverStartErr] = await to(server.start())
+  await registerLogging(server)
+  await registerDevErrors(server)
+  await registerViewEngine(server)
+  await server.start()
 
-  const errors = catOptions([
-    fromNullable(registerLoggingErr),
-    fromNullable(registerDevErrorsErr),
-    fromNullable(registerViewEngineErr),
-    fromNullable(serverStartErr)
-  ]).map(err => {
-    server.log('error', `could not register a plugin, ${err} 🚫`)
-    process.exit(1)
-  })
-
-  isEmpty(errors) && server.log('info', `Server running at: ${server.info.uri} ✅`)
+  server.log('info', `Server running at: ${server.info.uri} ✅`)
 }
 
 start()

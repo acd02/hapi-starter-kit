@@ -1,18 +1,27 @@
+import to from 'await-to-js'
 import { Server } from 'hapi'
 import * as path from 'path'
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const devErrors = require('hapi-dev-errors')
 const HapiReactViews = require('hapi-react-views')
 const Vision = require('vision')
 const Good = require('good')
 
 export async function registerViewEngine(server: Server) {
-  await server.register({
-    plugin: Vision,
-    options: {}
-  })
+  const [err] = await to(
+    server.register({
+      plugin: Vision,
+      options: {}
+    })
+  )
 
-  server.log('info', 'registerViewEngine ✅')
+  if (err) {
+    console.error(`🚫 could not register the viewEngine plugin, ${err} 🚫`)
+    process.exit(1)
+  } else {
+    server.log('info', 'viewEngine plugin registered ✅')
+  }
 
   const viewPath = path.resolve(__dirname, '../', 'views')
 
@@ -32,38 +41,51 @@ export async function registerViewEngine(server: Server) {
 }
 
 export async function registerDevErrors(server: Server) {
-  await server.register({
-    plugin: devErrors,
-    options: {
-      showErrors: process.env.NODE_ENV !== 'production'
-    }
-  })
+  const [err] = await to(
+    server.register({
+      plugin: devErrors,
+      options: {
+        showErrors: process.env.NODE_ENV !== 'production'
+      }
+    })
+  )
 
-  server.log('info', 'registerDevErrors ✅')
+  if (err) {
+    console.error(`🚫 could not register the devErrors plugin, ${err} 🚫`)
+    process.exit(1)
+  } else {
+    server.log('info', 'devErrors plugin registered ✅')
+  }
 }
 
 export async function registerLogging(server: Server) {
-  await server.register({
-    plugin: Good,
-    options: {
-      ops: {
-        interval: 1000
-      },
-      reporters: {
-        console: [
-          {
-            module: 'good-squeeze',
-            name: 'Squeeze',
-            args: [{ log: '*', request: '*', response: '*' }]
-          },
-          {
-            module: 'good-console'
-          },
-          'stdout'
-        ]
+  const [err] = await to(
+    server.register({
+      plugin: Good,
+      options: {
+        ops: {
+          interval: 1000
+        },
+        reporters: {
+          console: [
+            {
+              module: 'good-squeeze',
+              name: 'Squeeze',
+              args: [{ log: '*', request: '*', response: '*' }]
+            },
+            {
+              module: 'good-console'
+            },
+            'stdout'
+          ]
+        }
       }
-    }
-  })
+    })
+  )
 
-  server.log('info', 'registerLogging ✅')
+  if (err) {
+    console.error(`🚫 could not register the goodConsole plugin, ${err} 🚫`)
+    process.exit(1)
+  }
+  server.log('info', 'goodConsole plugin registered ✅')
 }

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Option } from 'fp-ts/lib/Option'
 
 type Item = {
   label: string
@@ -7,8 +6,8 @@ type Item = {
 }
 
 type Props = {
-  maybeIdParam: Option<string>
-  maybeQueryString: Option<string>
+  maybeIdParam?: string
+  maybeQueryString?: string
   items: Item[]
 }
 
@@ -17,12 +16,12 @@ function Index(props: Props) {
 
   return (
     <>
-      {maybeIdParam.map(param => <div>id param: {param}</div>).toUndefined()}
-      {maybeQueryString.map(query => <div>query string: {query}</div>).toUndefined()}
+      {maybeIdParam && <div>id param: {maybeIdParam}</div>}
+      {maybeQueryString && <div>query string: {maybeQueryString}</div>}
       {items.length && (
         <ul>
           {items.map(item => (
-            <li>{item.label}</li>
+            <li key={item.id}>{item.label}</li>
           ))}
         </ul>
       )}
@@ -30,4 +29,5 @@ function Index(props: Props) {
   )
 }
 
+/* eslint-disable fp/no-mutation */
 module.exports = Index

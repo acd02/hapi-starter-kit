@@ -18,4 +18,5 @@ function LayoutView(props: Props & React.Props<{}>) {
   )
 }
 
+/* eslint-disable fp/no-mutation */
 module.exports = LayoutView
