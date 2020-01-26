@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon --config ./nodemon.json",
+    "start": "npm run server",
     "lint": "eslint --config .eslintrc.js ./src --ext .ts,.tsx,.js --fix",
     "prettier": "prettier --config .prettierrc.json --write \"src/**/*.{ts,tsx}\""
   },

@@ -71,10 +71,22 @@ export async function registerLogging(server: Server) {
             {
               module: 'good-squeeze',
               name: 'Squeeze',
-              args: [{ log: '*', request: '*', response: '*' }]
+              args: [
+                {
+                  log: '*',
+                  request: '*',
+                  response: '*',
+                  error: '*'
+                }
+              ]
             },
             {
-              module: 'good-console'
+              module: 'good-console',
+              args: [
+                {
+                  format: 'DD/MM/YYYY HH:mm:ss:SS'
+                }
+              ]
             },
             'stdout'
           ]
