@@ -5,7 +5,7 @@ import { routes } from './routes'
 
 const server = new Hapi.Server({
   host: 'localhost',
-  port: 3000
+  port: 80
 })
 
 server.route(routes)
