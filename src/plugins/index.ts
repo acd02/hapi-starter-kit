@@ -1,12 +1,13 @@
 import to from 'await-to-js'
 import { Server } from 'hapi'
+import { Options } from 'hapi-pino'
 import * as path from 'path'
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const devErrors = require('hapi-dev-errors')
 const HapiReactViews = require('hapi-react-views')
 const Vision = require('vision')
-const Good = require('good')
+const HapiPino = require('hapi-pino')
 
 export async function registerViewEngine(server: Server) {
   const [err] = await to(
@@ -17,10 +18,8 @@ export async function registerViewEngine(server: Server) {
   )
 
   if (err) {
-    console.error(`🚫 could not register the viewEngine plugin, ${err} 🚫`)
+    console.error(`could not register the viewEngine plugin, ${err} 🚫`)
     process.exit(1)
-  } else {
-    server.log('info', 'viewEngine plugin registered ✅')
   }
 
   const viewPath = path.resolve(__dirname, '../', 'views')
@@ -51,53 +50,24 @@ export async function registerDevErrors(server: Server) {
   )
 
   if (err) {
-    console.error(`🚫 could not register the devErrors plugin, ${err} 🚫`)
+    console.error(`could not register the devErrors plugin, ${err} 🚫`)
     process.exit(1)
-  } else {
-    server.log('info', 'devErrors plugin registered ✅')
   }
 }
 
-export async function registerLogging(server: Server) {
+export async function registerPino(server: Server) {
   const [err] = await to(
     server.register({
-      plugin: Good,
+      plugin: HapiPino,
       options: {
-        ops: {
-          interval: 1000
-        },
-        reporters: {
-          console: [
-            {
-              module: 'good-squeeze',
-              name: 'Squeeze',
-              args: [
-                {
-                  log: '*',
-                  request: '*',
-                  response: '*',
-                  error: '*'
-                }
-              ]
-            },
-            {
-              module: 'good-console',
-              args: [
-                {
-                  format: 'DD/MM/YYYY HH:mm:ss:SS'
-                }
-              ]
-            },
-            'stdout'
-          ]
-        }
-      }
+        logPayload: true,
+        prettyPrint: process.env.NODE_ENV !== 'production'
+      } as Options
     })
   )
 
   if (err) {
-    console.error(`🚫 could not register the goodConsole plugin, ${err} 🚫`)
+    console.error('error', `could not register the HapiPino plugin, ${err} 🚫`)
     process.exit(1)
   }
-  server.log('info', 'goodConsole plugin registered ✅')
 }

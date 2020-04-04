@@ -11,17 +11,21 @@ module.exports = {
   ],
   ignorePatterns: ['node_modules/'],
   parserOptions: {
+    project: './tsconfig.json',
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module' // Allows for the use of imports
   },
   rules: {
     // Overwrite rules specified from the extended configs or add ones
     // Typescript
+    '@typescript-eslint/consistent-type-definitions': [2, 'type'],
+    '@typescript-eslint/array-type': [2, { default: 'array', readonly: 'array' }],
     '@typescript-eslint/prefer-interface': 0,
     '@typescript-eslint/no-object-literal-type-assertion': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/switch-exhaustiveness-check': 2,
     // React
     'react/prop-types': 0,
     'react/jsx-key': 0,
@@ -43,16 +47,16 @@ module.exports = {
     // Misc
     complexity: [1, 5],
     curly: ['error', 'multi', 'consistent'],
-    'max-lines': [1, { max: 180, skipBlankLines: true, skipComments: true }],
-    'max-lines-per-function': [1, { max: 50, skipComments: true }],
+    'max-lines': [1, { max: 150, skipBlankLines: true, skipComments: true }],
+    'max-lines-per-function': [1, { max: 50, skipBlankLines: true, skipComments: true }],
     'max-len': ['error', { code: 90, ignoreTemplateLiterals: true }],
     'max-depth': [2, 2],
     'max-nested-callbacks': [1, 2],
-    'newline-before-return': 2,
-    'no-console': [1, { allow: ['error'] }],
-    'no-debugger': 1,
+    'newline-before-return': 1,
+    'no-console': [2, { allow: ['error', 'info'] }],
+    'no-debugger': 2,
     'no-shadow': 2,
-    'no-unused-expressions': 0,
+    'no-unused-expressions': [2, { allowShortCircuit: true }],
     'no-var': 2,
     quotes: ['error', 'single', { allowTemplateLiterals: false }],
     'space-before-function-paren': [

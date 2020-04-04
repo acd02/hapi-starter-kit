@@ -33,3 +33,7 @@ export const someDataHandler: Lifecycle.Method = (_request, reply) => {
     })
     .code(200)
 }
+
+export const somePostDataHandler: Lifecycle.Method = (request, reply) => {
+  return reply.response(request.payload).code(200)
+}

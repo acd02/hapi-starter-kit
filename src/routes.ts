@@ -1,6 +1,11 @@
 import { ServerRoute } from 'hapi'
 
-import { notFoundHandler, rootHandler, someDataHandler } from './handlers'
+import {
+  notFoundHandler,
+  rootHandler,
+  someDataHandler,
+  somePostDataHandler
+} from './handlers'
 
 export enum QueryStrings {
   name = 'name'
@@ -20,6 +25,11 @@ export const routes: ServerRoute[] = [
     method: 'GET',
     path: '/someData',
     handler: someDataHandler
+  },
+  {
+    method: 'POST',
+    path: '/someData',
+    handler: somePostDataHandler
   },
   {
     method: 'GET',

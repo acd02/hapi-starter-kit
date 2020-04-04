@@ -4,15 +4,10 @@
     "baseUrl": ".",
     "jsx": "react",
     "paths": {
-      "*": [
-        "./src/*"
-      ]
+      "*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "es5",
-      "es2018"
-    ],
+    "lib": ["es5", "es2018"],
     "module": "commonjs",
     "noImplicitAny": true,
     "noUnusedLocals": true,
