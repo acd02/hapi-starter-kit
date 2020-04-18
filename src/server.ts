@@ -4,7 +4,7 @@ import { registerDevErrors, registerPino, registerViewEngine } from './plugins'
 import { routes } from './routes'
 
 const server = new Hapi.Server({
-  host: 'localhost',
+  host: '0.0.0.0',
   port: 3000
 })
 
