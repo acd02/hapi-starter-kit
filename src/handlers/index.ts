@@ -1,6 +1,6 @@
 import { Lifecycle } from '@hapi/hapi'
 import { when } from 'acd-utils'
-import { QueryStrings } from 'utils/querystring'
+import { QueryStrings } from 'utils/querystrings'
 
 export const rootHandler: Lifecycle.Method = (request, reply) => {
   const queryStrings = when(request.query[QueryStrings.name])
