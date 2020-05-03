@@ -22,6 +22,15 @@ export const routes: ServerRoute[] = [
   },
   {
     method: 'GET',
+    path: '/css/{file*}',
+    handler: {
+      directory: {
+        path: 'css',
+      },
+    },
+  },
+  {
+    method: 'GET',
     path: '/{any*}',
     handler: notFoundHandler,
   },

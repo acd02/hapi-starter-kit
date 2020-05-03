@@ -2,16 +2,23 @@ import * as Hapi from '@hapi/hapi'
 
 import { registerPlugins } from './plugins'
 import { routes } from './routes'
+import { join } from 'path'
 
 const server = new Hapi.Server({
   host: '0.0.0.0',
   port: 3000,
+  // inert plugin config
+  routes: {
+    files: {
+      relativeTo: join(__dirname, 'public'),
+    },
+  },
 })
-
-server.route(routes)
 
 async function init() {
   await registerPlugins(server)
+
+  server.route(routes)
 
   server
     .start()
