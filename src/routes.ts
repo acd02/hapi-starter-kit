@@ -8,7 +8,7 @@ import { Params } from 'utils/params'
 export const routes: ServerRoute[] = [
   {
     method: 'GET',
-    path: `/{${Params.id}?}`,
+    path: '/',
     handler: rootHandler,
   },
   {
