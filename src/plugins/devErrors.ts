@@ -1,6 +1,7 @@
 import { Server } from '@hapi/hapi'
 import to from 'await-to-js'
 
+import { isProduction } from 'utils/isProd'
 /* eslint-disable @typescript-eslint/no-var-requires */
 const devErrors = require('hapi-dev-errors')
 
@@ -9,7 +10,7 @@ export async function registerDevErrors(server: Server) {
     server.register({
       plugin: devErrors,
       options: {
-        showErrors: process.env.NODE_ENV !== 'production',
+        showErrors: !isProduction,
       },
     })
   )
