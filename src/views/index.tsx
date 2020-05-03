@@ -1,23 +1,22 @@
 import * as React from 'react'
 
+import { MainLayout } from './layouts'
+
 type Item = {
   label: string
   id: number
 }
 
 type Props = {
-  maybeIdParam?: string
-  maybeQueryString?: string
   items: Item[]
+  queryStrings: string[]
+  title?: string
 }
 
-function Index(props: Props) {
-  const { maybeIdParam, maybeQueryString, items } = props
-
+function Index({ items, queryStrings, title }: Props) {
   return (
-    <>
-      {maybeIdParam && <div>id param: {maybeIdParam}</div>}
-      {maybeQueryString && <div>query string: {maybeQueryString}</div>}
+    <MainLayout title={title}>
+      {displayQueryStrings(queryStrings)}
       {items.length && (
         <ul>
           {items.map(item => (
@@ -25,7 +24,23 @@ function Index(props: Props) {
           ))}
         </ul>
       )}
-    </>
+    </MainLayout>
+  )
+}
+
+function displayQueryStrings(qs: string[]) {
+  return (
+    !!qs.length && (
+      <>
+        query strings:
+        {qs.map((s, i) => (
+          <span>
+            {` ${s}`}
+            {i < qs.length - 1 && ', '}
+          </span>
+        ))}
+      </>
+    )
   )
 }
 

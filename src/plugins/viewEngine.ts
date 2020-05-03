@@ -25,13 +25,6 @@ export async function registerViewEngine(server: Server) {
     engines: { tsx: HapiReactViews },
     relativeTo: __dirname,
     path: viewPath,
-    compileOptions: {
-      layoutPath: path.resolve(viewPath, 'layouts'),
-      layout: 'index',
-    },
-    context: {
-      title: 'Document',
-    },
     isCached: process.env.NODE_ENV === 'production',
   })
 }

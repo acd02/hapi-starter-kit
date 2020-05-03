@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": false,
     "baseUrl": ".",
+    "downlevelIteration": true,
     "jsx": "react",
     "paths": {
       "handlers/*": ["./src/handlers/*"],

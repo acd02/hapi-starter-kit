@@ -11,7 +11,6 @@ export const routes: ServerRoute[] = [
     path: `/{${Params.id}?}`,
     handler: rootHandler,
   },
-
   {
     ...getUsers,
     path: '/users',

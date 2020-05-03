@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 type Props = {
-  title: string
+  title?: string
 }
 
-function LayoutView({ children, title }: Props & React.Props<{}>) {
+export function MainLayout({ children, title = 'no title' }: Props & React.Props<{}>) {
   return (
     <html>
       <head>
@@ -14,10 +14,9 @@ function LayoutView({ children, title }: Props & React.Props<{}>) {
         <link rel="stylesheet" href="/css/reset.css" />
         <title>{title}</title>
       </head>
-      <body dangerouslySetInnerHTML={{ __html: children as string }} />
+      <body>
+        <main>{children}</main>
+      </body>
     </html>
   )
 }
-
-/* eslint-disable fp/no-mutation */
-module.exports = LayoutView
