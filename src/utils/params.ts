@@ -1,3 +1,3 @@
 export enum Params {
-  id = 'id'
+  id = 'id',
 }

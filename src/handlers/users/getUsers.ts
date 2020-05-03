@@ -1,13 +1,14 @@
 import { Lifecycle, ServerRoute } from '@hapi/hapi'
-import { User, usersSchema } from 'schemas/users'
 import * as W from '@hapi/wreck'
 import to from 'await-to-js'
+import { User, usersSchema } from 'schemas/users'
 
 export const getUsersHandler: Lifecycle.Method = async (request, reply) => {
   const [err, data] = await to(W.get('https://jsonplaceholder.typicode.com/users'))
 
   if (err) {
     request.log('error', err)
+
     return reply.response({
       err: 'an error occured',
     })

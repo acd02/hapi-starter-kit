@@ -1,5 +1,5 @@
-import to from 'await-to-js'
 import { Server } from '@hapi/hapi'
+import to from 'await-to-js'
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const devErrors = require('hapi-dev-errors')

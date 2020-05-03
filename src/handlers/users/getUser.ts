@@ -1,8 +1,8 @@
 import { Lifecycle, ServerRoute } from '@hapi/hapi'
-import { paramSchema, User, userSchema } from 'schemas/users'
-import { Params } from 'utils/params'
 import * as W from '@hapi/wreck'
 import to from 'await-to-js'
+import { paramSchema, User, userSchema } from 'schemas/users'
+import { Params } from 'utils/params'
 
 export const getUserHandler: Lifecycle.Method = async (request, reply) => {
   const [err, data] = await to(
@@ -11,6 +11,7 @@ export const getUserHandler: Lifecycle.Method = async (request, reply) => {
 
   if (err) {
     request.log('error', err)
+
     return reply.response({
       err: 'an error occured',
     })

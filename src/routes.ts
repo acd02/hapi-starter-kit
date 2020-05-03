@@ -1,10 +1,8 @@
 import { ServerRoute } from '@hapi/hapi'
-
-import { rootHandler } from 'handlers/index'
 import { notFoundHandler } from 'handlers/404'
-import { getUsers } from 'handlers/users/getUsers'
+import { rootHandler } from 'handlers/index'
 import { getUser } from 'handlers/users/getUser'
-
+import { getUsers } from 'handlers/users/getUsers'
 import { Params } from 'utils/params'
 
 export const routes: ServerRoute[] = [

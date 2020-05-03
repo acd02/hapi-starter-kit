@@ -1,5 +1,5 @@
-import to from 'await-to-js'
 import { Server } from '@hapi/hapi'
+import to from 'await-to-js'
 import { Options } from 'hapi-pino'
 
 /* eslint-disable @typescript-eslint/no-var-requires */
@@ -11,8 +11,8 @@ export async function registerPino(server: Server) {
       plugin: HapiPino,
       options: {
         logPayload: true,
-        prettyPrint: process.env.NODE_ENV !== 'production'
-      } as Options
+        prettyPrint: process.env.NODE_ENV !== 'production',
+      } as Options,
     })
   )
 
