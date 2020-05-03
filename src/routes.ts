@@ -1,39 +1,30 @@
-import { ServerRoute } from 'hapi'
+import { ServerRoute } from '@hapi/hapi'
 
-import {
-  notFoundHandler,
-  rootHandler,
-  someDataHandler,
-  somePostDataHandler
-} from './handlers'
+import { rootHandler } from 'handlers/index'
+import { notFoundHandler } from 'handlers/404'
+import { getUsers } from 'handlers/users/getUsers'
+import { getUser } from 'handlers/users/getUser'
 
-export enum QueryStrings {
-  name = 'name'
-}
-
-export enum Params {
-  id = 'id'
-}
+import { Params } from 'utils/params'
 
 export const routes: ServerRoute[] = [
   {
     method: 'GET',
     path: `/{${Params.id}?}`,
-    handler: rootHandler
+    handler: rootHandler,
+  },
+
+  {
+    ...getUsers,
+    path: '/users',
   },
   {
-    method: 'GET',
-    path: '/someData',
-    handler: someDataHandler
-  },
-  {
-    method: 'POST',
-    path: '/someData',
-    handler: somePostDataHandler
+    ...getUser,
+    path: `/users/{${Params.id}}`,
   },
   {
     method: 'GET',
     path: '/{any*}',
-    handler: notFoundHandler
-  }
+    handler: notFoundHandler,
+  },
 ]

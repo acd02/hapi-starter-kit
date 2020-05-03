@@ -1,8 +1,6 @@
 {
-  "watch": [
-    "./"
-  ],
+  "watch": ["./"],
   "ext": "ts",
   "ignore": [],
-  "exec": "ts-node --pretty --project ./tsconfig.json ./src/server.ts"
+  "exec": "ts-node --pretty --project ./tsconfig.json -r tsconfig-paths/register ./src/server.ts"
 }

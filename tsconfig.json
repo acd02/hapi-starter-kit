@@ -4,7 +4,10 @@
     "baseUrl": ".",
     "jsx": "react",
     "paths": {
-      "*": ["./src/*"]
+      "handlers/*": ["./src/handlers/*"],
+      "routes": ["./src/routes.ts"],
+      "schemas/*": ["./src/schemas/*"],
+      "utils/*": ["./src/utils/*"],
     },
     "forceConsistentCasingInFileNames": true,
     "lib": ["es5", "es2018"],
