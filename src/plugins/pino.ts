@@ -1,7 +1,6 @@
 import { Server } from '@hapi/hapi'
 import to from 'await-to-js'
 import { Options } from 'hapi-pino'
-
 import { isProduction } from 'utils/isProd'
 
 /* eslint-disable @typescript-eslint/no-var-requires */

@@ -1,8 +1,8 @@
 import * as Hapi from '@hapi/hapi'
+import { join } from 'path'
 
 import { registerPlugins } from './plugins'
 import { routes } from './routes'
-import { join } from 'path'
 
 const server = new Hapi.Server({
   host: '0.0.0.0',
