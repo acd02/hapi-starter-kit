@@ -30,6 +30,11 @@ export const paramSchema = Joi.object({
   id: Joi.number().min(1).max(10),
 })
 
+export const simpleUserSchema = Joi.object({
+  name: Joi.string(),
+  id: Joi.number(),
+})
+
 export type User = {
   id: number
   name: string

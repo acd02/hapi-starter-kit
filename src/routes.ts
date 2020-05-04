@@ -3,6 +3,7 @@ import { notFoundHandler } from 'handlers/404'
 import { rootHandler } from 'handlers/index'
 import { getUser } from 'handlers/users/getUser'
 import { getUsers } from 'handlers/users/getUsers'
+import { postUser } from 'handlers/users/postUser'
 import { Params } from 'utils/params'
 
 export const routes: ServerRoute[] = [
@@ -18,6 +19,10 @@ export const routes: ServerRoute[] = [
   {
     ...getUser,
     path: `/users/{${Params.id}}`,
+  },
+  {
+    ...postUser,
+    path: '/users',
   },
   {
     method: 'GET',
