@@ -1,3 +1,4 @@
+import * as Boom from '@hapi/boom'
 import { Lifecycle, ServerRoute } from '@hapi/hapi'
 import * as W from '@hapi/wreck'
 import to from 'await-to-js'
@@ -12,9 +13,7 @@ export const getUserHandler: Lifecycle.Method = async (request, reply) => {
   if (err) {
     request.log('error', err)
 
-    return reply.response({
-      err: 'an error occured',
-    })
+    return Boom.badRequest('an error occured')
   }
 
   const users: User[] = JSON.parse((data?.payload as Buffer).toString())
