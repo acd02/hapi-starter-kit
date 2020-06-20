@@ -1,10 +1,9 @@
-import { Plugin, Server, ServerRoute } from '@hapi/hapi'
-import to from 'await-to-js'
+import { Plugin, ServerRoute } from '@hapi/hapi'
 import { Params } from 'utils/params'
 
 import { getUser, getUsers, postUser } from './handlers'
 
-const users: Plugin<{}> = {
+export const users: Plugin<{}> = {
   name: 'users',
   version: '1.0.0',
   register: function (server) {
@@ -27,18 +26,4 @@ const users: Plugin<{}> = {
     ]
     server.route(routes)
   },
-}
-
-export async function registerUsers(server: Server) {
-  const [err] = await to(
-    server.register({
-      plugin: users,
-      options: {},
-    })
-  )
-
-  if (err) {
-    console.error(`could not register the users plugin, ${err} 🚫`)
-    process.exit(1)
-  }
 }

@@ -1,25 +1,21 @@
-import * as Hapi from '@hapi/hapi'
-import { join } from 'path'
+import { compose } from '@hapi/glue'
+import { resolve } from 'path'
 
-import { registerHapiPlugins } from './hapiPlugins'
-import { registerPlugins } from './plugins'
+import { manifest } from './manifest'
 import { routes } from './routes'
 
-const server = new Hapi.Server({
-  host: '0.0.0.0',
-  port: 3000,
-  // inert plugin config
-  routes: {
-    files: {
-      relativeTo: join(__dirname, 'public'),
-    },
-  },
-})
+const HapiReactViews = require('hapi-react-views')
+const viewPath = resolve(__dirname, './', 'views')
 
 async function init() {
-  await registerHapiPlugins(server)
-  await registerPlugins(server)
+  const server = await compose(manifest)
 
+  server.views({
+    engines: { tsx: HapiReactViews },
+    relativeTo: __dirname,
+    path: viewPath,
+    isCached: process.env.NODE_ENV === 'production',
+  })
   server.route(routes)
 
   server
