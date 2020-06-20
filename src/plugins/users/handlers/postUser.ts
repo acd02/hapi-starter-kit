@@ -2,7 +2,7 @@ import * as Boom from '@hapi/boom'
 import { Lifecycle, ServerRoute } from '@hapi/hapi'
 import { simpleUserSchema } from 'schemas/users'
 
-export const postUserHandler: Lifecycle.Method = async (request, reply) => {
+const postUserHandler: Lifecycle.Method = async (request, reply) => {
   return reply.response(request.payload)
 }
 

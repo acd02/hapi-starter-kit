@@ -1,6 +1,7 @@
 import * as Hapi from '@hapi/hapi'
 import { join } from 'path'
 
+import { registerHapiPlugins } from './hapiPlugins'
 import { registerPlugins } from './plugins'
 import { routes } from './routes'
 
@@ -16,6 +17,7 @@ const server = new Hapi.Server({
 })
 
 async function init() {
+  await registerHapiPlugins(server)
   await registerPlugins(server)
 
   server.route(routes)
