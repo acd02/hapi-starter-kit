@@ -61,7 +61,7 @@ module.exports = {
     quotes: ['error', 'single', { allowTemplateLiterals: false }],
     'space-before-function-paren': [
       2,
-      { anonymous: 'never', named: 'never', asyncArrow: 'always' }
+      { anonymous: 'always', named: 'never', asyncArrow: 'always' }
     ]
   }
 }
