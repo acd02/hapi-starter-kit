@@ -18,8 +18,7 @@ const getUsersHandler: Lifecycle.Method = async (request, reply) => {
   return reply.response(users).code(200)
 }
 
-export const getUsers: Omit<ServerRoute, 'path'> = {
-  method: 'GET',
+export const getUsers: Omit<ServerRoute, 'path' | 'method'> = {
   handler: getUsersHandler,
   options: {
     response: {

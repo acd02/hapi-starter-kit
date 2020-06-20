@@ -2,7 +2,7 @@ import { Plugin, Server, ServerRoute } from '@hapi/hapi'
 import to from 'await-to-js'
 import { Params } from 'utils/params'
 
-import { usersHandlers } from './handlers'
+import { getUser, getUsers, postUser } from './handlers'
 
 const users: Plugin<{}> = {
   name: 'users',
@@ -10,15 +10,18 @@ const users: Plugin<{}> = {
   register: function (server) {
     const routes: ServerRoute[] = [
       {
-        ...usersHandlers.getUsers,
+        ...getUsers,
+        method: 'GET',
         path: '/users',
       },
       {
-        ...usersHandlers.getUser,
+        ...getUser,
+        method: 'GET',
         path: `/users/{${Params.id}}`,
       },
       {
-        ...usersHandlers.postUser,
+        ...postUser,
+        method: 'POST',
         path: '/users',
       },
     ]

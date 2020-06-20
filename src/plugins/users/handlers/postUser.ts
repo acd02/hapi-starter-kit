@@ -6,8 +6,7 @@ const postUserHandler: Lifecycle.Method = async (request, reply) => {
   return reply.response(request.payload)
 }
 
-export const postUser: Omit<ServerRoute, 'path'> = {
-  method: 'POST',
+export const postUser: Omit<ServerRoute, 'path' | 'method'> = {
   handler: postUserHandler,
   options: {
     validate: {
