@@ -1,8 +1,8 @@
 import { Manifest } from '@hapi/glue'
 import { Options } from 'hapi-pino'
 import { join } from 'path'
-
 import { isProduction } from 'utils/isProd'
+
 import { users } from './plugins/users'
 
 /* eslint-disable @typescript-eslint/no-var-requires */

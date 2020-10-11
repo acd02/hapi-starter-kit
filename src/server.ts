@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { compose } from '@hapi/glue'
 import { resolve } from 'path'
 

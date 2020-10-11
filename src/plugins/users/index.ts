@@ -3,7 +3,7 @@ import { Params } from 'utils/params'
 
 import { getUser, getUsers, postUser } from './handlers'
 
-export const users: Plugin<{}> = {
+export const users: Plugin<unknown> = {
   name: 'users',
   version: '1.0.0',
   register: function (server) {

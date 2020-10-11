@@ -1,4 +1,4 @@
-import * as Joi from '@hapi/joi'
+import * as Joi from 'joi'
 
 export const userSchema = Joi.object({
   id: Joi.number().required(),
@@ -35,15 +35,15 @@ export const simpleUserSchema = Joi.object({
   id: Joi.number(),
 })
 
-export type User = {
-  id: number
+type Geo = {
+  lat: string
+  lng: string
+}
+
+type Company = {
   name: string
-  username: string
-  email: string
-  address: Address
-  phone: string
-  website: string
-  company: Company
+  catchPhrase: string
+  bs: string
 }
 
 type Address = {
@@ -54,13 +54,13 @@ type Address = {
   geo: Geo
 }
 
-type Geo = {
-  lat: string
-  lng: string
-}
-
-type Company = {
+export type User = {
+  id: number
   name: string
-  catchPhrase: string
-  bs: string
+  username: string
+  email: string
+  address: Address
+  phone: string
+  website: string
+  company: Company
 }

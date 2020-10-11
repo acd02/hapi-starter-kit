@@ -4,7 +4,10 @@ type Props = {
   title?: string
 }
 
-export function MainLayout({ children, title = 'no title' }: Props & React.Props<{}>) {
+export function MainLayout({
+  children,
+  title = 'no title',
+}: Props & React.PropsWithChildren<unknown>) {
   return (
     <html>
       <head>
