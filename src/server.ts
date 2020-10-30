@@ -10,20 +10,24 @@ const HapiReactViews = require('hapi-react-views')
 const viewPath = resolve(__dirname, './', 'views')
 
 async function init() {
-  const server = await compose(manifest)
+  try {
+    const server = await compose(manifest)
 
-  server.views({
-    engines: { tsx: HapiReactViews },
-    relativeTo: __dirname,
-    path: viewPath,
-    isCached: process.env.NODE_ENV === 'production',
-  })
-  server.route(routes)
+    server.views({
+      engines: { tsx: HapiReactViews },
+      relativeTo: __dirname,
+      path: viewPath,
+      isCached: process.env.NODE_ENV === 'production',
+    })
+    server.route(routes)
 
-  server
-    .start()
-    .then(() => server.log('info', `Server running at: ${server.info.uri} ✅`))
-    .catch(e => console.error(`server could not start ${e} 🚫`))
+    server
+      .start()
+      .then(() => server.log('info', `Server running at: ${server.info.uri} ✅`))
+      .catch(e => console.error(`server could not start ${e} 🚫`))
+  } catch (e) {
+    console.error('🚫 ', e)
+  }
 }
 
 init()

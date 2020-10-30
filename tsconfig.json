@@ -8,6 +8,7 @@
       "handlers/*": ["./src/handlers/*"],
       "routes": ["./src/routes.ts"],
       "schemas/*": ["./src/schemas/*"],
+      "constants/*": ["./src/constants/*"],
       "utils/*": ["./src/utils/*"],
     },
     "forceConsistentCasingInFileNames": true,

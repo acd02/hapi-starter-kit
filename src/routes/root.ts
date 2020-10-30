@@ -1,9 +1,9 @@
 import { Lifecycle } from '@hapi/hapi'
 import { when } from 'acd-utils'
-import { QueryStrings } from 'utils/querystrings'
+import { qs } from 'constants/querystrings'
 
 export const rootHandler: Lifecycle.Method = (request, reply) => {
-  const queryStrings = when(request.query[QueryStrings.name])
+  const queryStrings = when(request.query[qs.name])
     .map(qs => (Array.isArray(qs) ? [...qs] : [qs]))
     .getOrElse([])
 
