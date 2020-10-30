@@ -1,7 +1,7 @@
 import { Plugin, ServerRoute } from '@hapi/hapi'
 import { Params } from 'utils/params'
 
-import { getUser, getUsers, postUser } from './handlers'
+import { getUser, getUsers, postUser, checkCustomErrMessageValidation } from './handlers'
 
 export const users: Plugin<unknown> = {
   name: 'users',
@@ -17,6 +17,11 @@ export const users: Plugin<unknown> = {
         ...getUser,
         method: 'GET',
         path: `/users/{${Params.id}}`,
+      },
+      {
+        ...checkCustomErrMessageValidation,
+        method: 'GET',
+        path: `/usersvalidation/{${Params.id}}`,
       },
       {
         ...postUser,
